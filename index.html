@@ -11,6 +11,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
     import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
+  
     const firebaseConfig = {
       apiKey: "AIzaSyBpJV6kWCizLdGD2eL6F2OKVrfUcofRinE",
       authDomain: "alturelle-f9ba4.firebaseapp.com",
@@ -38,10 +39,11 @@
           timestamp: serverTimestamp()
         });
         alert("Note saved successfully.");
-      } catch (error) {
-        console.error("Error saving note:", error);
-        alert("An error occurred while saving the note.");
-      }
+      catch (error) {
+        console.error("❌ Firestore Save Error:", error.message);
+        alert("Error: " + error.message);
+    }
+
     }
   </script>
   <style>
