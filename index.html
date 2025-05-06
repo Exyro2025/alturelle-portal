@@ -18,6 +18,13 @@
       justify-content: center;
       min-height: 100vh;
     }
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
     .portal {
       background: #1f2937;
       border-radius: 16px;
@@ -82,9 +89,9 @@
       color: #e2e8f0;
       margin-bottom: 12px;
     }
-    .download-link, .tidycal-btn {
+    .download-link, .tidycal-btn, .upload-btn {
       display: inline-block;
-      margin-top: 16px;
+      margin-top: 12px;
       background: #334155;
       color: #f1f5f9;
       padding: 10px 20px;
@@ -92,7 +99,7 @@
       text-decoration: none;
       font-weight: 600;
     }
-    .download-link:hover, .tidycal-btn:hover {
+    .download-link:hover, .tidycal-btn:hover, .upload-btn:hover {
       background: #475569;
     }
     iframe {
@@ -102,34 +109,51 @@
       border: none;
       border-radius: 10px;
     }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      padding-bottom: 20px;
+    }
   </style>
 </head>
 <body>
-  <div class="portal">
-    <img src="logo.png" alt="Alturelle Logo" class="logo" />
-    <h1>Client Portal Access</h1>
-    <p>Log in to view confidential updates and dashboard tools.</p>
-    <input type="text" placeholder="Email or Client ID" />
-    <input type="password" placeholder="Access Code" />
-    <button onclick="openDashboard()">Enter Portal</button>
+  <div class="wrapper">
+    <div class="portal">
+      <img src="logo.png" alt="Alturelle Logo" class="logo" />
+      <h1>Client Portal Access</h1>
+      <p>Log in to view confidential updates and dashboard tools.</p>
+      <input type="text" placeholder="Email or Client ID" />
+      <input type="password" placeholder="Access Code" />
+      <button onclick="openDashboard()">Enter Portal</button>
 
-    <div class="dashboard" id="portalContent">
-      <h2>Welcome to Your Client Dashboard</h2>
-      <p>Your upcoming consultation will be confirmed via email.</p>
+      <div class="dashboard" id="portalContent">
+        <h2>Welcome to Your Client Dashboard</h2>
+        <p>Your upcoming consultation will be confirmed via email.</p>
 
-      <ul>
-        <li>📄 Download Onboarding Packet:</li>
-        <a class="download-link" href="/Alturelle_Client_Onboarding_Packet.pdf" target="_blank">Download PDF</a>
+        <ul>
+          <li>📄 Download Onboarding Packet:</li>
+          <a class="download-link" href="/Alturelle_Client_Onboarding_Packet.pdf" target="_blank">Download PDF</a>
 
-        <li>📅 Schedule or View Appointments:</li>
-        <a class="tidycal-btn" href="https://tidycal.com/1jlkz8m" target="_blank">Schedule Consultation</a>
+          <li>📅 Schedule or View Appointments:</li>
+          <a class="tidycal-btn" href="https://tidycal.com/1jlkz8m" target="_blank">Schedule Consultation</a>
 
-        <li>📥 Secure File Upload: (Coming Soon)</li>
-        <li>📝 Intake History & Notes: (Coming Soon)</li>
-      </ul>
+          <li>📤 Secure File Upload:</li>
+          <input type="file" id="fileUpload" style="margin-top: 10px; color: #fff;" />
+          <a class="upload-btn" href="#" onclick="alert('Secure upload coming soon. Please email files to contact@alturelle.com for now.')">Upload</a>
 
-      <p style="margin-top: 24px;">For urgent assistance, email <strong>contact@alturelle.com</strong> or call <strong>202-982-6963</strong>.</p>
+          <li>📝 Intake History & Notes:</li>
+          <textarea placeholder="Client notes or intake summary..." style="width:100%; height:100px; background:#334155; color:#f1f5f9; border:none; border-radius:8px; padding:10px;"></textarea>
+        </ul>
+
+        <p style="margin-top: 24px;">For urgent assistance, email <strong>contact@alturelle.com</strong> or call <strong>202-982-6963</strong>.</p>
+      </div>
     </div>
+
+    <footer>
+      &copy; 2025 Alturelle Compliance Group · All rights reserved · Confidential & Secure
+    </footer>
   </div>
 
   <script>
@@ -137,7 +161,5 @@
       document.getElementById('portalContent').style.display = 'block';
     }
   </script>
-  
 </body>
 </html>
-
