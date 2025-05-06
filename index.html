@@ -7,6 +7,43 @@
   <link rel="icon" type="image/jpeg" href="/icon.jpg">
   <meta name="theme-color" content="#0a0f1a" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDfCA39RmVegC6do_p77vcruBYkLckrMoQ",
+      authDomain: "exyro-ai.firebaseapp.com",
+      projectId: "exyro-ai",
+      storageBucket: "exyro-ai.firebasestorage.app",
+      messagingSenderId: "904233119612",
+      appId: "1:904233119612:web:6c43d6a6dd15f5de42fef9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.saveNote = async () => {
+      const email = document.getElementById('clientEmail').value.trim();
+      const note = document.getElementById('clientNote').value.trim();
+
+      if (!email || !note) {
+        alert('Please enter both email and a note.');
+        return;
+      }
+
+      try {
+        await setDoc(doc(db, "client_notes", email), {
+          note,
+          timestamp: serverTimestamp()
+        });
+        alert("Note saved successfully.");
+      } catch (error) {
+        console.error("Error saving note:", error);
+        alert("An error occurred while saving the note.");
+      }
+    }
+  </script>
   <style>
     body {
       margin: 0;
@@ -109,6 +146,16 @@
       border: none;
       border-radius: 10px;
     }
+    textarea {
+      width: 100%;
+      height: 100px;
+      background: #334155;
+      color: #f1f5f9;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px;
+    }
     footer {
       margin-top: 40px;
       text-align: center;
@@ -144,7 +191,9 @@
           <a class="upload-btn" href="#" onclick="alert('Secure upload coming soon. Please email files to contact@alturelle.com for now.')">Upload</a>
 
           <li>📝 Intake History & Notes:</li>
-          <textarea placeholder="Client notes or intake summary..." style="width:100%; height:100px; background:#334155; color:#f1f5f9; border:none; border-radius:8px; padding:10px;"></textarea>
+          <input type="text" id="clientEmail" placeholder="Client Email or ID" />
+          <textarea id="clientNote" placeholder="Enter intake note..."></textarea>
+          <button onclick="saveNote()">Save Note</button>
         </ul>
 
         <p style="margin-top: 24px;">For urgent assistance, email <strong>contact@alturelle.com</strong> or call <strong>202-982-6963</strong>.</p>
@@ -163,3 +212,4 @@
   </script>
 </body>
 </html>
+
