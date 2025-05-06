@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alturelle Client Portal</title>
+  <link rel="icon" type="image/jpeg" href="/icon.jpg">
+  <meta name="theme-color" content="#0a0f1a" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #0a0f1a, #1b263b);
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .portal {
+      background: #1f2937;
+      border-radius: 16px;
+      padding: 40px 30px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    .logo {
+      width: 70px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin-bottom: 30px;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #334155;
+      color: #f1f5f9;
+      font-size: 0.95rem;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3b82f6;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #2563eb;
+    }
+    .fake-access {
+      display: none;
+      text-align: left;
+      margin-top: 30px;
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .fake-access h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .fake-access p {
+      font-size: 0.9rem;
+      color: #e2e8f0;
+    }
+    .download-link {
+      display: inline-block;
+      margin-top: 20px;
+      background: #334155;
+      color: #f1f5f9;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .download-link:hover {
+      background: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="portal">
+    <img src="logo.png" alt="Alturelle Logo" class="logo" />
+    <h1>Client Portal Access</h1>
+    <p>Log in to view confidential updates and consultation details.</p>
+    <input type="text" placeholder="Email or Client ID" />
+    <input type="password" placeholder="Access Code" />
+    <button onclick="simulateAccess()">Enter Portal</button>
+
+    <div class="fake-access" id="portalContent">
+      <h2>Welcome to Your Alturelle Client Dashboard</h2>
+      <p>Your upcoming consultation is scheduled. A team member will contact you shortly with instructions or test coordination details.</p>
+      <p>📥 Download your full client onboarding packet below:</p>
+      <a class="download-link" href="/Alturelle_Client_Onboarding_Packet_Corrected.pdf" target="_blank">Download Onboarding Packet (PDF)</a>
+      <p style="margin-top: 20px;">For urgent updates, email: <strong>contact@alturelle.com</strong></p>
+    </div>
+  </div>
+
+  <script>
+    function simulateAccess() {
+      document.getElementById('portalContent').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
