@@ -22,7 +22,7 @@
       background: #1f2937;
       border-radius: 16px;
       padding: 40px 30px;
-      max-width: 420px;
+      max-width: 500px;
       width: 100%;
       box-shadow: 0 0 20px rgba(0,0,0,0.4);
       text-align: center;
@@ -65,25 +65,26 @@
     button:hover {
       background-color: #2563eb;
     }
-    .fake-access {
+    .dashboard {
       display: none;
       text-align: left;
       margin-top: 30px;
       background: #0f172a;
       border-radius: 12px;
-      padding: 20px;
+      padding: 24px;
     }
-    .fake-access h2 {
+    .dashboard h2 {
       font-size: 1.2rem;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
-    .fake-access p {
+    .dashboard p, .dashboard li {
       font-size: 0.9rem;
       color: #e2e8f0;
+      margin-bottom: 12px;
     }
-    .download-link {
+    .download-link, .tidycal-btn {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 16px;
       background: #334155;
       color: #f1f5f9;
       padding: 10px 20px;
@@ -91,8 +92,15 @@
       text-decoration: none;
       font-weight: 600;
     }
-    .download-link:hover {
+    .download-link:hover, .tidycal-btn:hover {
       background: #475569;
+    }
+    iframe {
+      margin-top: 20px;
+      width: 100%;
+      height: 420px;
+      border: none;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -100,24 +108,39 @@
   <div class="portal">
     <img src="logo.png" alt="Alturelle Logo" class="logo" />
     <h1>Client Portal Access</h1>
-    <p>Log in to view confidential updates and consultation details.</p>
+    <p>Log in to view confidential updates and dashboard tools.</p>
     <input type="text" placeholder="Email or Client ID" />
     <input type="password" placeholder="Access Code" />
-    <button onclick="simulateAccess()">Enter Portal</button>
+    <button onclick="openDashboard()">Enter Portal</button>
 
-    <div class="fake-access" id="portalContent">
-      <h2>Welcome to Your Alturelle Client Dashboard</h2>
-      <p>Your upcoming consultation is scheduled. A team member will contact you shortly with instructions or test coordination details.</p>
-      <p>📥 Download your full client onboarding packet below:</p>
-      <a class="download-link" href="/Alturelle_Client_Onboarding_Packet_Corrected.pdf" target="_blank">Download Onboarding Packet (PDF)</a>
-      <p style="margin-top: 20px;">For urgent updates, email: <strong>contact@alturelle.com</strong></p>
+    <div class="dashboard" id="portalContent">
+      <h2>Welcome to Your Client Dashboard</h2>
+      <p>Your upcoming consultation will be confirmed via email.</p>
+
+      <ul>
+        <li>📄 Download Onboarding Packet:</li>
+        <a class="download-link" href="/Alturelle_Client_Onboarding_Packet_Corrected.pdf" target="_blank">Download PDF</a>
+
+        <li>📅 Schedule or View Appointments:</li>
+        <a class="tidycal-btn" href="https://tidycal.com/1jlkz8m" target="_blank">Schedule Consultation</a>
+
+        <li>📥 Secure File Upload: (Coming Soon)</li>
+        <li>📝 Intake History & Notes: (Coming Soon)</li>
+      </ul>
+
+      <p style="margin-top: 24px;">For urgent assistance, email <strong>contact@alturelle.com</strong> or call <strong>202-982-6963</strong>.</p>
     </div>
   </div>
 
   <script>
-    function simulateAccess() {
+    function openDashboard() {
       document.getElementById('portalContent').style.display = 'block';
     }
   </script>
+  <footer style="margin-top: 60px; text-align: center; font-size: 0.8rem; color: #94a3b8;">
+  &copy; 2025 Alturelle Compliance Group · All rights reserved · Confidential & Secure
+</footer>
+
 </body>
 </html>
+
