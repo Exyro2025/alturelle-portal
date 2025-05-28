@@ -47,7 +47,7 @@
       color: #cbd5e1;
       margin-bottom: 30px;
     }
-    input[type="text"], input[type="password"] {
+    input[type="email"], input[type="password"] {
       width: 100%;
       padding: 10px 14px;
       margin-bottom: 18px;
@@ -122,25 +122,25 @@
   <div class="wrapper">
     <div class="portal">
       <img src="logo.png" alt="Alturelle Logo" class="logo" />
-     <div style="margin-top: 24px; background-color: #334155; padding: 20px 24px; border-radius: 12px; color: #f1f5f9; font-size: 0.95rem; line-height: 1.5;">
-      <h2 style="margin-top: 0; margin-bottom: 12px; color: #e2e8f0;">Welcome to the Alturelle Client Portal</h2>
-      <p style="margin: 0 0 10px;">This secure platform is for <strong style="color: #ffffff;">authorized clients only</strong>.</p>
-      <p style="margin: 0 0 10px;">If you are an existing client, please log in using your assigned credentials.</p>
-      <p style="margin: 0 0 10px;">
-        For new service inquiries, visit 
-        <a href="https://www.alturelle.com" style="color: #93c5fd; text-decoration: underline;" target="_blank" rel="noopener noreferrer">www.alturelle.com</a> 
-        or call <strong style="white-space: nowrap; color: #ffffff;">(301) 834-2981</strong>.
-      </p>
-      <p style="margin: 0;">Your privacy and compliance matter — thank you for trusting Alturelle.</p>
-    </div>
+      <div style="margin-top: 24px; background-color: #334155; padding: 20px 24px; border-radius: 12px; color: #f1f5f9; font-size: 0.95rem; line-height: 1.5;">
+        <h2 style="margin-top: 0; margin-bottom: 12px; color: #e2e8f0;">Welcome to the Alturelle Client Portal</h2>
+        <p style="margin: 0 0 10px;">This secure platform is for <strong style="color: #ffffff;">authorized clients only</strong>.</p>
+        <p style="margin: 0 0 10px;">If you are an existing client, please log in using your assigned credentials.</p>
+        <p style="margin: 0 0 10px;">
+          For new service inquiries, visit 
+          <a href="https://www.alturelle.com" style="color: #93c5fd; text-decoration: underline;" target="_blank" rel="noopener noreferrer">www.alturelle.com</a> 
+          or call <strong style="white-space: nowrap; color: #ffffff;">(301) 834-2981</strong>.
+        </p>
+        <p style="margin: 0;">Your privacy and compliance matter — thank you for trusting Alturelle.</p>
+      </div>
       <h1>Client Portal Access</h1>
       <p>Log in to view confidential updates and dashboard tools.</p>
-      <input type="text" placeholder="Email or Client ID" />
-      <input type="password" placeholder="Access Code" />
+      <input type="email" id="email" placeholder="Email Address" />
+      <input type="password" id="password" placeholder="Access Code" />
       <button onclick="login()">Enter Portal</button>
       <p id="loginError" style="color: #f87171; display: none; margin-top: 10px;"></p>
 
-      <div class="dashboard" id="portalContent" style="display: none;">
+      <div class="dashboard" id="portalContent">
         <h2>Welcome to Your Client Dashboard</h2>
         <p>Your upcoming consultation will be confirmed via email.</p>
 
@@ -148,7 +148,7 @@
           <li>📄 Download Onboarding Packet:</li>
           <a class="download-link" href="/Alturelle_Client_Onboarding_Packet.pdf" target="_blank">Download PDF</a>
 
-          <li>📅 Schedule or View Appointments:</li>
+          <li>🗕 Schedule or View Appointments:</li>
           <a class="tidycal-btn" href="https://tidycal.com/1jlkz8m" target="_blank">Schedule Consultation</a>
 
           <li>📤 Secure File Upload:</li>
@@ -160,6 +160,7 @@
         </ul>
 
         <p style="margin-top: 24px;">For urgent assistance, email <strong>contact@alturelle.com</strong> or call <strong>202-982-6963</strong>.</p>
+        <button onclick="logout()" style="margin-top: 16px;">Log Out</button>
       </div>
     </div>
 
@@ -169,65 +170,51 @@
     </footer>
   </div>
 
- <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBpJV6kWCizLdGD2eL6F2OKVrfUcofRinE",
+      authDomain: "alturelle-f9ba4.firebaseapp.com",
+      projectId: "alturelle-f9ba4",
+      storageBucket: "alturelle-f9ba4.firebasestorage.app",
+      messagingSenderId: "784802618848",
+      appId: "1:784802618848:web:fd0676c58f976b036c1f85"
+    };
+    firebase.initializeApp(firebaseConfig);
 
-<script>
-  // 🔐 Replace with your actual Firebase config:
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    // Add remaining config fields here
-  };
+    firebase.auth().onAuthStateChanged(user => {
+      const dashboard = document.getElementById('portalContent');
+      if (dashboard) {
+        dashboard.style.display = user ? 'block' : 'none';
+      }
+    });
 
-  firebase.initializeApp(firebaseConfig);
+    function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-  // 🔒 Protect portal
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-
-<script>
-  // ✅ Replace with your real Firebase config
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    // Optional: Add other values like storageBucket, messagingSenderId, appId
-  };
-  firebase.initializeApp(firebaseConfig);
-
-  // 🔐 Listen for auth status changes
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      document.getElementById('portalContent').style.display = 'block';
-    } else {
-      document.getElementById('portalContent').style.display = 'none';
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          document.getElementById("loginError").style.display = "none";
+        })
+        .catch((error) => {
+          const errorEl = document.getElementById("loginError");
+          errorEl.textContent = error.message || "Login failed.";
+          errorEl.style.display = "block";
+        });
     }
-  });
 
-  // 🔐 Login function
-  function login() {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        document.getElementById("loginError").style.display = "none";
-        // Dashboard will be revealed via onAuthStateChanged
-      })
-      .catch((error) => {
-        const errorMsg = error.message || "Login failed. Please try again.";
-        const errorEl = document.getElementById("loginError");
-        errorEl.textContent = errorMsg;
-        errorEl.style.display = "block";
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        location.reload();
       });
-  }
-</script>
+    }
+  </script>
 </body>
 </html>
+
 
 
 
