@@ -137,7 +137,8 @@
       <p>Log in to view confidential updates and dashboard tools.</p>
       <input type="text" placeholder="Email or Client ID" />
       <input type="password" placeholder="Access Code" />
-      <button onclick="openDashboard()">Enter Portal</button>
+      <button onclick="login()">Enter Portal</button>
+
 
       <div class="dashboard" id="portalContent" style="display: none;">
         <h2>Welcome to Your Client Dashboard</h2>
@@ -184,16 +185,46 @@
   firebase.initializeApp(firebaseConfig);
 
   // 🔒 Protect portal
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
 <script>
+  // ✅ Replace with your real Firebase config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    // Optional: Add other values like storageBucket, messagingSenderId, appId
+  };
+  firebase.initializeApp(firebaseConfig);
+
+  // 🔐 Listen for auth status changes
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      // ✅ Show dashboard only when authenticated
       document.getElementById('portalContent').style.display = 'block';
     } else {
-      // 🔒 Hide dashboard but keep login form visible
       document.getElementById('portalContent').style.display = 'none';
     }
   });
+
+  // 🔐 Login function
+  function login() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        document.getElementById("loginError").style.display = "none";
+        // Dashboard will be revealed via onAuthStateChanged
+      })
+      .catch((error) => {
+        const errorMsg = error.message || "Login failed. Please try again.";
+        const errorEl = document.getElementById("loginError");
+        errorEl.textContent = errorMsg;
+        errorEl.style.display = "block";
+      });
+  }
 </script>
 </body>
 </html>
