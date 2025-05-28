@@ -139,7 +139,7 @@
       <input type="password" placeholder="Access Code" />
       <button onclick="openDashboard()">Enter Portal</button>
 
-      <div class="dashboard" id="portalContent">
+      <div class="dashboard" id="portalContent" style="display: none;">
         <h2>Welcome to Your Client Dashboard</h2>
         <p>Your upcoming consultation will be confirmed via email.</p>
 
@@ -168,13 +168,34 @@
     </footer>
   </div>
 
-  <script>
-    function openDashboard() {
+ <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+<script>
+  // 🔐 Replace with your actual Firebase config:
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    // Add remaining config fields here
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  // 🔒 Protect portal
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
       document.getElementById('portalContent').style.display = 'block';
+    } else {
+      alert("Access denied. Please log in via Alturelle.");
+      window.location.href = "https://www.alturelle.com";
     }
-  </script>
+  });
+</script>
 </body>
 </html>
+
 
 
 
