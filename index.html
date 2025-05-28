@@ -184,17 +184,20 @@
   firebase.initializeApp(firebaseConfig);
 
   // 🔒 Protect portal
+<script>
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      // ✅ Show dashboard only when authenticated
       document.getElementById('portalContent').style.display = 'block';
     } else {
-      alert("Access denied. Please log in via Alturelle.");
-      window.location.href = "https://www.alturelle.com";
+      // 🔒 Hide dashboard but keep login form visible
+      document.getElementById('portalContent').style.display = 'none';
     }
   });
 </script>
 </body>
 </html>
+
 
 
 
