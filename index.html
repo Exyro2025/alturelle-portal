@@ -191,8 +191,10 @@
 
     firebase.auth().onAuthStateChanged(user => {
       const dashboard = document.getElementById('portalContent');
-      if (dashboard) {
-        dashboard.style.display = user ? 'block' : 'none';
+      if (user) {
+        dashboard.style.display = 'block';
+      } else {
+        dashboard.style.display = 'none';
       }
     });
 
