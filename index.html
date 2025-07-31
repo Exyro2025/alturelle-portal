@@ -3,223 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Altruelle Client Portal</title>
-  <link rel="icon" type="image/png" href="/icon.png">
-  <meta name="theme-color" content="#0a0f1a" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Alturelle Client Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/logo.png" type="image/png" />
   <style>
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to bottom, #0a0f1a, #1b263b);
-      color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0%, #0b1120 100%);
+      color: #e2e8f0;
     }
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-    .portal {
-      background: #1f2937;
-      border-radius: 16px;
-      padding: 40px 30px;
-      max-width: 500px;
-      width: 100%;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-      text-align: center;
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 2rem;
     }
     .logo {
-      width: 70px;
-      margin-bottom: 20px;
+      display: block;
+      margin: 2rem auto 1rem;
+      height: 60px;
     }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
+    .card {
+      background: #1e293b;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      margin-bottom: 2rem;
     }
-    p {
-      font-size: 0.95rem;
+    h1, h2 {
+      color: #f8fafc;
+      text-align: center;
+    }
+    p, label {
+      line-height: 1.6;
       color: #cbd5e1;
-      margin-bottom: 30px;
     }
-    input[type="email"], input[type="password"] {
+    input, textarea {
       width: 100%;
-      padding: 10px 14px;
-      margin-bottom: 18px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 0.5rem;
       background: #334155;
       color: #f1f5f9;
-      font-size: 0.95rem;
     }
     button {
       width: 100%;
-      padding: 12px;
+      padding: 0.75rem;
       background-color: #3b82f6;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
+      color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 0.5rem;
+      font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
-    button:hover {
-      background-color: #2563eb;
-    }
-    .dashboard {
-      display: none;
-      text-align: left;
-      margin-top: 30px;
-      background: #0f172a;
-      border-radius: 12px;
-      padding: 24px;
-    }
-    .dashboard h2 {
-      font-size: 1.2rem;
-      margin-bottom: 16px;
-    }
-    .dashboard p, .dashboard li {
-      font-size: 0.9rem;
-      color: #e2e8f0;
-      margin-bottom: 12px;
-    }
-    .download-link, .tidycal-btn, .upload-btn {
-      display: inline-block;
-      margin-top: 12px;
-      background: #334155;
-      color: #f1f5f9;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .download-link:hover, .tidycal-btn:hover, .upload-btn:hover {
-      background: #475569;
-    }
-    iframe {
-      margin-top: 20px;
-      width: 100%;
-      height: 420px;
-      border: none;
-      border-radius: 10px;
-    }
-    footer {
-      margin-top: 40px;
+    .footer {
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      padding: 2rem 1rem 1rem;
       color: #94a3b8;
-      padding-bottom: 20px;
+    }
+    .divider {
+      height: 1px;
+      background: #475569;
+      margin: 1rem 0;
+    }
+    a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+    .dashboard-section {
+      background-color: #0f172a;
+      padding: 1rem 1.25rem;
+      border-radius: 0.75rem;
+      margin-top: 1rem;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #f8fafc;
+    }
+    .file-upload {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="portal">
-      <img src="logo.png" alt="Altruelle Logo" class="logo" />
-      <div style="margin-top: 24px; background-color: #334155; padding: 20px 24px; border-radius: 12px; color: #f1f5f9; font-size: 0.95rem; line-height: 1.5;">
-        <h2 style="margin-top: 0; margin-bottom: 12px; color: #e2e8f0;">Welcome to the Altruelle Client Portal</h2>
-        <p style="margin: 0 0 10px;">This secure platform is for <strong style="color: #ffffff;">authorized clients only</strong>.</p>
-        <p style="margin: 0 0 10px;">If you are an existing client, please log in using your assigned credentials.</p>
-        <p style="margin: 0 0 10px;">
-          For new service inquiries, visit 
-          <a href="https://www.alturelle.com" style="color: #93c5fd; text-decoration: underline;" target="_blank" rel="noopener noreferrer">www.alturelle.com</a> 
-          or call <strong style="white-space: nowrap; color: #ffffff;">(301) 834-2981</strong>.
-        </p>
-        <p style="margin: 0;">Your privacy and compliance matter — thank you for trusting Altruelle.</p>
-      </div>
-      <h1>Client Portal Access</h1>
-      <p>Log in to view confidential updates and dashboard tools.</p>
-      <input type="email" id="email" placeholder="Email Address" />
-      <input type="password" id="password" placeholder="Access Code" />
-      <button onclick="login()">Enter Portal</button>
-      <p id="loginError" style="color: #f87171; display: none; margin-top: 10px;"></p>
+  <div class="container">
+    <img src="/logo.png" alt="Alturelle Logo" class="logo" />
 
-      <div class="dashboard" id="portalContent" style="display: none;">
-        <h2>Welcome to Your Client Dashboard</h2>
-        <p>Your upcoming consultation will be confirmed via email.</p>
-
-        <ul>
-          <li>📄 Download Onboarding Packet:</li>
-          <a class="download-link" href="/Alturelle_Client_Onboarding_Packet.pdf" target="_blank">Download PDF</a>
-
-          <li>🗕 Schedule or View Appointments:</li>
-          <a class="tidycal-btn" href="https://tidycal.com/1jlkz8m" target="_blank">Schedule Consultation</a>
-
-          <li>📤 Secure File Upload:</li>
-          <input type="file" id="fileUpload" style="margin-top: 10px; color: #fff;" />
-          <a class="upload-btn" href="#" onclick="alert('Secure upload coming soon. Please email files to contact@alturelle.com for now.')">Upload</a>
-
-          <li>📝 Intake History & Notes:</li>
-          <textarea placeholder="Client notes or intake summary..." style="width:100%; height:100px; background:#334155; color:#f1f5f9; border:none; border-radius:8px; padding:10px;"></textarea>
-        </ul>
-
-        <p style="margin-top: 24px;">For urgent assistance, email <strong>alturellegroup@proton.me</strong> or call <strong>301-834-2981</strong>.</p>
-        <button onclick="logout()" style="margin-top: 16px;">Log Out</button>
-      </div>
+    <div class="card">
+      <h1>Welcome to the Alturelle Client Portal</h1>
+      <p>This secure platform is for <strong>authorized clients only</strong>.</p>
+      <p>If you are an existing client, please log in using your assigned credentials.</p>
+      <p>For new service inquiries, visit <a href="https://www.alturelle.com">www.alturelle.com</a> or call <strong>(301) 834-2981</strong>.</p>
+      <p>Your privacy and compliance matter — thank you for trusting Alturelle.</p>
     </div>
 
-    <footer>
-  &copy; 2025 Altruelle Compliance Group · All rights reserved.<br>
-  A Vōrai Private Holdings Company · Mobile Compliance Services Across the U.S.
-</footer>
+    <div class="card">
+      <h2>Client Portal Access</h2>
+      <p>Log in to view confidential updates and dashboard tools.</p>
+      <input type="email" placeholder="Email Address" />
+      <input type="text" placeholder="Access Code" />
+      <button>Enter Portal</button>
+    </div>
+
+    <div class="dashboard-section">
+      <div class="section-title">Welcome to Your Client Dashboard</div>
+      <ul>
+        <li><a href="#">📄 Download Onboarding Packet (PDF)</a></li>
+        <li>📅 Schedule Consultation</li>
+        <li>📤 Secure File Upload</li>
+      </ul>
+      <div class="file-upload">
+        <input type="file" />
+        <button>Upload</button>
+      </div>
+      <label for="notes">📝 Intake History & Notes:</label>
+      <textarea rows="4" placeholder="Client notes or intake summary..."></textarea>
+    </div>
+
+    <div class="footer">
+      For urgent assistance, email <a href="mailto:alturellegroup@proton.me">alturellegroup@proton.me</a> or call 301-834-2981.<br/><br/>
+      &copy; 2025 Alturelle Compliance Group · All rights reserved.<br/>
+      A Vōrai Private Holdings Company · Mobile Compliance Services Across the U.S.
+    </div>
   </div>
-
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const dashboard = document.getElementById('portalContent');
-      dashboard.style.display = 'none';
-    });
-    
-    const firebaseConfig = {
-      apiKey: "AIzaSyBpJV6kWCizLdGD2eL6F2OKVrfUcofRinE",
-      authDomain: "alturelle-f9ba4.firebaseapp.com",
-      projectId: "alturelle-f9ba4",
-      storageBucket: "alturelle-f9ba4.firebasestorage.app",
-      messagingSenderId: "784802618848",
-      appId: "1:784802618848:web:fd0676c58f976b036c1f85"
-    };
-    firebase.initializeApp(firebaseConfig);
-
-    firebase.auth().onAuthStateChanged(user => {
-      const dashboard = document.getElementById('portalContent');
-      if (user) {
-        dashboard.style.display = 'block';
-      } else {
-        dashboard.style.display = 'none';
-      }
-    });
-
-    function login() {
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(() => {
-          document.getElementById("loginError").style.display = "none";
-          document.getElementById("portalContent").style.display = "block";
-        })
-        .catch((error) => {
-          const errorEl = document.getElementById("loginError");
-          errorEl.textContent = error.message || "Login failed.";
-          errorEl.style.display = "block";
-        });
-    }
-
-    function logout() {
-      firebase.auth().signOut().then(() => {
-        location.reload();
-      });
-    }
-  </script>
 </body>
 </html>
 
