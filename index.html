@@ -113,19 +113,33 @@
     </div>
 
     <div class="dashboard-section">
-      <div class="section-title">Welcome to Your Client Dashboard</div>
-      <ul>
-        <li><a href="#">📄 Download Onboarding Packet (PDF)</a></li>
-        <li>📅 Schedule Consultation</li>
-        <li>📤 Secure File Upload</li>
-      </ul>
-      <div class="file-upload">
-        <input type="file" />
-        <button>Upload</button>
-      </div>
-      <label for="notes">📝 Intake History & Notes:</label>
-      <textarea rows="4" placeholder="Client notes or intake summary..."></textarea>
-    </div>
+  <div class="section-title">Welcome to Your Client Dashboard</div>
+  <ul>
+    <li>
+      <a href="/Altruelle_Client_Onboarding_Packet.pdf" download>
+        📄 Download Onboarding Packet (PDF)
+      </a>
+    </li>
+    <li>
+      <a href="https://tidycal.com/1jlkz8m" target="_blank">
+        📅 Schedule Consultation
+      </a>
+    </li>
+    <li>📤 Secure File Upload</li>
+  </ul>
+
+  <div class="file-upload">
+    <input type="file" id="fileInput" />
+    <button onclick="uploadFile()">Upload</button>
+  </div>
+  <p id="uploadStatus" style="font-size: 0.9rem; color: #94a3b8; margin-top: 0.5rem;"></p>
+
+  <label for="notes">📝 Intake History & Notes:</label>
+  <textarea id="notes" rows="4" placeholder="Client notes or intake summary..."></textarea>
+  <button onclick="saveNotes()" style="margin-top: 1rem;">Save Notes</button>
+  <p id="saveStatus" style="font-size: 0.9rem; color: #94a3b8; margin-top: 0.5rem;"></p>
+</div>
+
 
     <div class="footer">
       For urgent assistance, email <a href="mailto:alturellegroup@proton.me">alturellegroup@proton.me</a> or call 301-834-2981.<br/><br/>
@@ -133,6 +147,39 @@
       A Vōrai Private Holdings Company · Mobile Compliance Services Across the U.S.
     </div>
   </div>
+
+  <script>
+  function uploadFile() {
+    const fileInput = document.getElementById('fileInput');
+    const status = document.getElementById('uploadStatus');
+
+    if (!fileInput.files.length) {
+      status.innerText = "Please choose a file before uploading.";
+      return;
+    }
+
+    status.innerText = "Uploading...";
+    setTimeout(() => {
+      status.innerText = "✅ File uploaded successfully (simulation)";
+    }, 1000);
+  }
+
+  function saveNotes() {
+    const notes = document.getElementById('notes').value;
+    const status = document.getElementById('saveStatus');
+    localStorage.setItem('altruelle_notes', notes);
+    status.innerText = "✅ Notes saved (stored in browser)";
+  }
+
+  // Optional: Load notes from browser storage when page loads
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('altruelle_notes');
+    if (saved) {
+      document.getElementById('notes').value = saved;
+    }
+  });
+</script>
+
 </body>
 </html>
 
