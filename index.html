@@ -90,6 +90,62 @@
       align-items: center;
       margin-top: 1rem;
     }
+
+    .dashboard-section {
+  background-color: #0f172a;
+  padding: 2rem;
+  border-radius: 10px;
+  color: #ffffff;
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: Arial, sans-serif;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.2rem;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
   </style>
 </head>
 <body>
@@ -139,6 +195,56 @@
   <button onclick="saveNotes()" style="margin-top: 1rem;">Save Notes</button>
   <p id="saveStatus" style="font-size: 0.9rem; color: #94a3b8; margin-top: 0.5rem;"></p>
 </div>
+
+    <div class="dashboard-section">
+
+  <div class="section-title">Welcome to Your Client Dashboard</div>
+  <ul>
+    <li><a href="Alturelle_Client_Onboarding_Packet.pdf" target="_blank">📄 Download Onboarding Packet (PDF)</a></li>
+    <li>📤 Secure File Upload</li>
+    <li>📝 Submit Intake Form Online</li>
+  </ul>
+
+  <!-- Step 2: Secure File Upload -->
+  <div class="file-upload">
+    <label for="file">Upload Required Documents:</label><br/>
+    <input type="file" id="file" name="file">
+    <button>Upload</button>
+  </div>
+
+  <!-- Step 3: Real-Time Intake Form -->
+  <div class="intake-form" style="margin-top: 2rem;">
+    <h3>📝 Submit Your Intake Form Online</h3>
+    <form action="https://formspree.io/f/mjkoeorb" method="POST">
+      <label for="fullName">Full Name</label><br/>
+      <input type="text" id="fullName" name="fullName" required><br/><br/>
+
+      <label for="company">Company Name</label><br/>
+      <input type="text" id="company" name="company"><br/><br/>
+
+      <label for="email">Email</label><br/>
+      <input type="email" id="email" name="email" required><br/><br/>
+
+      <label for="phone">Phone Number</label><br/>
+      <input type="tel" id="phone" name="phone"><br/><br/>
+
+      <label for="service">Service Requested</label><br/>
+      <select id="service" name="service">
+        <option value="DOT Urine Test">DOT Urine Test</option>
+        <option value="Breath Alcohol Test (BAT)">Breath Alcohol Test (BAT)</option>
+        <option value="Oral Fluid Drug Test">Oral Fluid Drug Test</option>
+        <option value="DER/TPA Compliance">DER/TPA Compliance</option>
+      </select><br/><br/>
+
+      <label for="notes">Additional Notes</label><br/>
+      <textarea id="notes" name="notes" rows="4" placeholder="Anything you'd like us to know..."></textarea><br/><br/>
+
+      <button type="submit">Submit Intake Form</button>
+    </form>
+  </div>
+</div>
+
+
 
 
     <div class="footer">
